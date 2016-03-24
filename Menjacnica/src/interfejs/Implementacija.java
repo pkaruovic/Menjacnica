@@ -14,33 +14,44 @@ public class Implementacija implements MenjacnicaInterfejs {
 	}
 	
 	public Implementacija(LinkedList<Kurs> kursevi) {
-		
+
 		this.kursevi = kursevi;
 	}
 
 	@Override
 	public void dodajKursValute(GregorianCalendar dan, double prodajniKurs, double kupovniKurs, double srednjiKurs) {
+
+		Kurs k = new Kurs();
 		
-		Kurs kurs = new Kurs();
+		k.setDan(dan);
+		k.setKupovniKurs(kupovniKurs);
+		k.setProdajniKurs(prodajniKurs);
+		k.setSrednjiKurs(srednjiKurs);
 		
-		kurs.setProdajniKurs(prodajniKurs);
-		kurs.setKupovniKurs(kupovniKurs);
-		kurs.setSrednjiKurs(srednjiKurs);
-		kurs.setDan(dan);
-		
-		kursevi.add(kurs);
+		kursevi.add(k);
 
 	}
 
 	@Override
 	public void izbrisiKursValute(GregorianCalendar dan) {
-		// TODO Auto-generated method stub
+		
+		for(int i=0; i<kursevi.size(); i++){
+			if(kursevi.get(i).getDan().equals(dan)){
+				kursevi.remove(i);
+			}
+		}
 
 	}
 
 	@Override
 	public Kurs pronadjiKursValute(GregorianCalendar dan) {
-		// TODO Auto-generated method stub
+		
+		for(int i=0; i<kursevi.size(); i++){
+			if(kursevi.get(i).getDan().equals(dan)){
+				return kursevi.get(i);
+			}
+		}
+		
 		return null;
 	}
 
@@ -51,7 +62,5 @@ public class Implementacija implements MenjacnicaInterfejs {
 	public void setKursevi(LinkedList<Kurs> kursevi) {
 		this.kursevi = kursevi;
 	}
-	
-	
 
 }
